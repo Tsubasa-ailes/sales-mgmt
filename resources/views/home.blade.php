@@ -1,3 +1,4 @@
+{-- 「ガワだけ作成」--}
 {{-- @extends('layouts.app') --}}
 {{-- @section('title', '販売管理ダッシュボード') --}}
 
@@ -5,7 +6,7 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center">販売管理システム　ダッシュボード</h1>
 
-    <!-- サマリー -->
+    {!-- サマリー --}
     < class="row mb-4 text-center">
         <div class="col-md-4">
             <div class="card shadow-sm">
