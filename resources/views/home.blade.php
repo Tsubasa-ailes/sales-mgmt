@@ -48,7 +48,7 @@
                     <a href="{{ route('products.index') }}" class="btn btn-lg btn-outline-primary w-100">商品マスタ</a>
                 </div>
                 <div class="col-md-6 mb-3">
-                    {{-- <a href="{{ route('partners.index') }}" class="btn btn-lg btn-outline-secondary w-100">取引先マスタ</a> --}}
+                    <a href="{{ route('partners.index') }}" class="btn btn-lg btn-outline-secondary w-100">取引先マスタ</a>
                 </div>
                 <div class="col-md-6 mb-3">
                     {{-- <a href="{{ route('sales-orders.index') }}" class="btn btn-lg btn-outline-success w-100">受注管理</a> --}}
