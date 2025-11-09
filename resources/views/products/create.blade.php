@@ -7,7 +7,7 @@
 
             <!-- {{-- 戻るボタン（一覧へ） --}} -->
             <!-- <a href="{{ route('products.index') }}" -->
-               <!-- class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold rounded-md"> -->
+            <!-- class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold rounded-md"> -->
                 <!-- ← 一覧に戻る -->
             <!-- </a> -->
         <!-- </div> -->
@@ -33,25 +33,25 @@
                     <!-- <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">SKU（商品コード）</label>
                         <input type="text" name="sku" value="{{ old('sku') }}"
-                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div> -->
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">商品名</label>
                         <input type="text" name="name" value="{{ old('name') }}"
-                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">単価</label>
                         <input type="number" step="0.01" name="unit_price" value="{{ old('unit_price', 0) }}"
-                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">消費税率（%）</label>
                         <input type="number" step="0.01" name="tax_rate" value="{{ old('tax_rate', 10) }}"
-                               class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
 
                     <div class="mb-6">

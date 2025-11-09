@@ -66,6 +66,17 @@
                 <div class="col-md-6 mb-3">
                     {{-- <a href="{{ route('invoices.index') }}" class="btn btn-lg btn-outline-dark w-100">請求書一覧</a> --}}
                 </div>
+                <div class="col-md-6 mb-3">
+                    {{-- <a href="{{ route('invoice.create') }}" class="btn btn-lg btn-outline-dark w-100">請求書一覧</a> --}}
+                </div>
+                @auth
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ route('users.index') }}" class="btn btn-lg btn-outline-primary w-100">ユーザー一覧</a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ route('users.create') }}" class="btn btn-lg btn-outline-primary w-100">ユーザー追加</a>
+                    </div>
+                @endauth
             </div>
         </div>
     </div>
