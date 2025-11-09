@@ -13,11 +13,16 @@
                 @if($products->isEmpty())
                     <p>商品が登録されていません。</p>
                 @else
+                    @if (session('status'))
+                        <div class="mb-4 text-sm text-green-600">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <table class="table-auto w-full text-left border-collapse">
                         <thead>
                             <tr class="border-b bg-gray-100">
                                 <th class="p-2">ID</th>
-                                <th class="p-2">SKU</th>
+                                <th class="p-2">品番</th>
                                 <th class="p-2">商品名</th>
                                 <th class="p-2">単価</th>
                                 <th class="p-2">消費税率</th>
@@ -30,7 +35,7 @@
                                     <td class="p-2">{{ $product->id }}</td>
                                     <td class="p-2">{{ $product->sku }}</td>
                                     <td class="p-2">{{ $product->name }}</td>
-                                    <td class="p-2">{{ number_format($product->unit_price, 2) }}</td>
+                                    <td class="p-2">{{ number_format($product->unit_price).'円' }}</td>
                                     <td class="p-2">{{ $product->tax_rate }}%</td>
                                     <td class="p-2">{{ $product->is_active ? '有効' : '無効' }}</td>
                                 </tr>

@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -29,7 +29,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'       => ['required', 'string', 'max:255'],
+            'unit_price' => ['required', 'numeric', 'min:0'],
+            'tax_rate'   => ['required', 'numeric', 'min:0'],
+            'is_active'  => ['required', 'boolean'],
+        ]);
+        
+        // ▼ ここがポイント：SKUの数値部分の MAX を取る
+        $maxNumber = Product::selectRaw("MAX(CAST(SUBSTRING(sku, 5) AS UNSIGNED)) as max_num")
+            ->value('max_num');
+
+        // まだ1件も無ければ1から開始
+        $nextNumber = $maxNumber ? ((int)$maxNumber + 1) : 1;
+
+        // PRD-0001 形式で作る
+        $validated['sku'] = 'PRD-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+
+        Product::create($validated);
+
+        return redirect()->route('products.index')->with('status', '商品を登録しました。');
     }
 
     /**
