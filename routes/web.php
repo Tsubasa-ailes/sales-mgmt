@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\HomeController;
@@ -9,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    Route::resource('users', UserController::class)->only(['index', 'create', 'store']);
+});
 Route::resource('products', ProductController::class);
 Route::resource('partners', PartnerController::class);
 
