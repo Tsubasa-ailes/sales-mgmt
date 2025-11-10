@@ -53,6 +53,15 @@
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
 
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">権限</label>
+                        <select name="role"
+                                class="mt-1 block w-40 border-gray-300 rounded-md shadow-sm">
+                            <option value="0" {{ old('role', 0) == 0 ? 'selected' : '' }}>一般ユーザー</option>
+                            <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>管理者</option>
+                        </select>
+                    </div>
+
                     <div class="flex justify-end">
                         <button type="submit"
                                 class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold rounded-md">

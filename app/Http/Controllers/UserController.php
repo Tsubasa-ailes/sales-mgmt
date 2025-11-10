@@ -35,12 +35,14 @@ class UserController extends Controller
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role'     => ['required', 'in:0,1'],
         ]);
 
         User::create([
             'name'     => $validated['name'],
             'email'    => $validated['email'],
             'password' => Hash::make($validated['password']), //ハッシュ化
+            'role'     => $validated['role'],
         ]);
 
         return redirect()
