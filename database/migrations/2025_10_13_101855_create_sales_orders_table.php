@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
         });
         // 受注マスタ（明細テーブル）
-        Schema::create('sales_item', function (Blueprint $table) {
+        Schema::create('sales_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sales_order_id')->constrained();
             $table->foreignId('product_id')->constrained();
@@ -39,6 +39,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('sales_items');
         Schema::dropIfExists('sales_orders');
     }
 };

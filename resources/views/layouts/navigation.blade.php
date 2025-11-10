@@ -67,6 +67,15 @@
                         @endauth
                     </x-slot>
                 </x-dropdown>
+                <div class="text-sm text-gray-500 ms-2">
+                    @auth
+                        @if (Auth::user()->role == 1)
+                            （管理者）
+                        @else
+                            （一般ユーザー）
+                        @endif
+                    @endauth
+                </div>
             </div>
 
             <!-- Hamburger -->

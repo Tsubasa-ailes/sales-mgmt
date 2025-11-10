@@ -56,12 +56,14 @@
                     </div>
                     {{-- 以下は未実装ボタン --}}
                     {{-- ... --}}
-                    <div class="col-md-6 mb-3">
-                        <a href="{{ route('users.index') }}" class="btn btn-lg btn-outline-primary w-100">ユーザー一覧</a>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <a href="{{ route('users.create') }}" class="btn btn-lg btn-outline-primary w-100">ユーザー追加</a>
-                    </div>
+                    @if (auth()->user()->role == 1)
+                        <div class="col-md-6 mb-3">
+                            <a href="{{ route('users.index') }}" class="btn btn-lg btn-outline-primary w-100">ユーザー一覧</a>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <a href="{{ route('users.create') }}" class="btn btn-lg btn-outline-primary w-100">ユーザー追加</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
