@@ -54,6 +54,9 @@
                     <div class="col-md-6 mb-3">
                         <a href="{{ route('partners.index') }}" class="btn btn-lg btn-outline-primary w-100">取引先マスタ</a>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ route('sales_orders.create') }}" class="btn btn-lg btn-outline-primary w-100">受注登録</a>
+                    </div>
                     {{-- 以下は未実装ボタン --}}
                     {{-- ... --}}
                     @if (auth()->user()->role == 1)

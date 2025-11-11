@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('partners', PartnerController::class);
 
     // 受注管理（一覧・登録など必要なアクションのみ）
-    Route::resource('sales-orders', SalesOrderController::class)
+    Route::resource('sales_orders', SalesOrderController::class)
         ->only(['index', 'create', 'store']);
 });
 

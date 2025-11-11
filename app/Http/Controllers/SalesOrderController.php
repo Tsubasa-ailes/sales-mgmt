@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\{Product, SalesOrder, SalesItem, StockMovement, Invoice, BusinessPartner};
+use App\Http\Requests\SalesOrderStoreRequest;
+use App\Models\{Product, SalesOrder, SalesItem, StockMovement, Invoice, BusinessPartner, Warehouse};
 use App\Services\InventoryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
@@ -20,7 +21,7 @@ class SalesOrderController extends Controller
     public function index()
     {
         $orders = SalesOrder::with('partner')->orderByDesc('ordered_at')->get();
-        return view('sales_orders.index', conpact('orders'));
+        return view('sales_orders.index', compact('orders'));
     }
 
     /**
@@ -30,7 +31,8 @@ class SalesOrderController extends Controller
     {
         $partners = BusinessPartner::orderBy('name')->get();
         $products = Product::where('is_active', true)->orderBy('name')->get();
-        return view('sales_orders.create', compact('partners', 'products'));
+        $warehouses = Warehouse::orderBy('name')->get();
+        return view('sales_orders.create', compact('partners', 'products', 'warehouses'));
     }
 
     /**
@@ -42,7 +44,7 @@ public function store(SalesOrderStoreRequest $request)
     $data = $request->validated();
 
     DB::transaction(function () use ($data) {
-        $subtotal = $tax_total = 0;
+        $subtotal = $tax_total = 0; // 初期化
 
         // ヘッダー登録
         $order = SalesOrder::create([
@@ -78,7 +80,7 @@ public function store(SalesOrderStoreRequest $request)
         ]);
     });
 
-    return redirect()->route('sales-orders.index')
+    return redirect()->route('sales_orders.index')
         ->with('status', '受注を登録しました。');
 }
 

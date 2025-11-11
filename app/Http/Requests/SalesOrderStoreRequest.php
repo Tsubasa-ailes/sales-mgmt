@@ -47,13 +47,24 @@ class SalesOrderStoreRequest extends FormRequest
     {
         return [
             'partner_id.required' => '取引先を選択してください。',
-            'partner_id_exists'   => '指定された取引先は存在しません。',
+            'partner_id.exists'   => '指定された取引先は存在しません。',
+
             'ordered_at.required' => '受注日を入力してください。',
+
             'warehouse_id.required' => '倉庫を選択してください。',
+            'warehouse_id.exists'   => '指定された倉庫は存在しません。',
+
             'items.required' => '明細を１行以上入力してください。',
-            'items.*.product_id.exists' => '商品が存在しません。',
-            'items.*.qty.gt' => '数量は１以上で入力してください。',
-        ];
+            'items.array'    => '明細の形式が不正です。',
+
+            'items.*.product_id.required' => '商品を選択してください。',
+            'items.*.product_id.exists'   => '指定された商品は存在しません。',
+
+            'items.*.qty.required' => '数量を入力してください。',
+            'items.*.qty.gt'       => '数量は１以上で入力してください。',
+
+            'items.*.unit_price.required' => '単価を入力してください。',
+        ];    
     }
 
     //フロントからの不正キーを排除(validated()で返すデータ)
