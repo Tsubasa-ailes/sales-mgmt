@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
     // 受注管理（一覧・登録など必要なアクションのみ）
     Route::resource('sales_orders', SalesOrderController::class)
-        ->only(['index', 'create', 'store']);
+        ->only(['index', 'create', 'store', 'show']);
 });
 
 

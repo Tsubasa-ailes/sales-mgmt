@@ -48,12 +48,13 @@ public function store(SalesOrderStoreRequest $request)
 
         // ヘッダー登録
         $order = SalesOrder::create([
-            'partner_id' => $data['partner_id'],
-            'ordered_at' => $data['ordered_at'],
-            'status'     => 'confirmed',
-            'subtotal'   => 0,
-            'tax_total'  => 0,
-            'total'      => 0,
+            'partner_id'   => $data['partner_id'],
+            'warehouse_id' => $data['warehouse_id'],
+            'ordered_at'   => $data['ordered_at'],
+            'status'       => 'confirmed',
+            'subtotal'     => 0,
+            'tax_total'    => 0,
+            'total'        => 0,
         ]);
 
         // 明細ループ
@@ -87,9 +88,12 @@ public function store(SalesOrderStoreRequest $request)
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $order = SalesOrder::with(['partner', 'items.product', 'invoice'])
+            ->findOrFail($id);
+
+        return view('sales_orders.show', compact('order'));
     }
 
     /**

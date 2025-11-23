@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('partner_id')->constrained('business_partners');
+            $table->foreignId('warehouse_id')->constrained();
             $table->date('ordered_at');
             $table->enum('status', ['draft','confirmed','cancelled'])->default('draft');
             $table->decimal('subtotal', 14, 2)->default(0);

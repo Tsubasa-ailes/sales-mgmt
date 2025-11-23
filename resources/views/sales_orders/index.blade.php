@@ -56,8 +56,8 @@
                                             @endif
                                         </td>
                                         <td class="px-4 py-2 text-center">
-                                            {{--<a href="{{ route('sales_orders.show', $order->id) }}" 
-                                                class="text-blue-600 hover:underline">詳細</a> --}}
+                                            <a href="{{ route('sales_orders.show', $order->id) }}" 
+                                                class="text-blue-600 hover:underline">詳細</a>
                                         </td>
                                     </tr>
                                 @endforeach
