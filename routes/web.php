@@ -6,6 +6,7 @@ use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
     // 受注管理（一覧・登録など必要なアクションのみ）
     Route::resource('sales_orders', SalesOrderController::class)
+        ->only(['index', 'create', 'store', 'show']);
+
+    Route::resource('invoices', InvoiceController::class)
         ->only(['index', 'create', 'store', 'show']);
 });
 

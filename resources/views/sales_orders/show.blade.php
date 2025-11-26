@@ -5,10 +5,18 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('受注詳細') }}
             </h2>
-            <a href="{{ route('sales_orders.index') }}" 
-                class="bg-gray-600 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 transition">
-                ← 一覧に戻る
-            </a>
+
+            @if (!$order->invoice)
+                <a href="{{ route('invoices.create', $order->id) }}"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700">
+                    請求書を発行
+                </a>
+            @else
+                <a href="{{ route('invoices.show', $order->invoice->id) }}"
+                    class="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700">
+                    請求書を見る
+                </a>
+            @endif
         </div>
     </x-slot>
 
@@ -28,7 +36,9 @@
 
                         <div>
                             <p class="text-sm text-gray-600">受注日</p>
-                            <p class="font-semibold">{{ \Carbon\Carbon::parse($order->ordered_at)->format('Y-m-d') }}</p>
+                            <p class="font-semibold">
+                                {{ \Carbon\Carbon::parse($order->ordered_at)->format('Y-m-d') }}
+                            </p>
                         </div>
 
                         <div>
@@ -44,7 +54,7 @@
 
                         <div>
                             <p class="text-sm text-gray-600">小計</p>
-                            <p class="font-semibold">¥{{ number_format($order->subtotal, 0) }}</p>
+                            <p class="font-semibold">¥{{ intval($order->subtotal) }}</p>
                         </div>
 
                         <div>
@@ -54,7 +64,7 @@
 
                         <div>
                             <p class="text-sm text-gray-600">合計</p>
-                            <p class="font-bold text-lg">¥{{ number_format($order->total, 0) }}</p>
+                            <p class="font-bold text-lg">¥{{ intval($order->total) }}</p>
                         </div>
                     </div>
                 </div>
@@ -110,10 +120,10 @@
                                             {{ intval($item->qty) }}
                                         </td>
                                         <td class="px-4 py-2 text-right">
-                                            ¥{{ intval($item->unit_price, 0) }}
+                                            ¥{{ intval($item->unit_price) }}
                                         </td>
                                         <td class="px-4 py-2 text-right">
-                                            ¥{{ intval($item->qty * $item->unit_price, 0) }}
+                                            ¥{{ intval($item->qty * $item->unit_price) }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -132,15 +142,23 @@
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <p class="text-sm text-gray-600">請求書番号</p>
-                                <p class="font-semibold">{{ $order->invoice->invoice_number }}</p>
+                                <p class="font-semibold">{{ $order->invoice->invoice_no }}</p>
                             </div>
                             <div>
                                 <p class="text-sm text-gray-600">発行日</p>
-                                <p>{{ $order->invoice->issued_at }}</p>
+                                <p>
+                                    {{ \Carbon\Carbon::parse($order->invoice->issued_at)->format('Y-m-d') }}
+                                </p>
                             </div>
                             <div>
                                 <p class="text-sm text-gray-600">支払期限</p>
-                                <p>{{ $order->invoice->due_date }}</p>
+                                <p>
+                                    @if ($order->invoice->due_on)
+                                        {{ \Carbon\Carbon::parse($order->invoice->due_on)->format('Y-m-d') }}
+                                    @else
+                                        —
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\BusinessPartner;
 use App\Models\Warehouse;
 use App\Models\SalesItem;
+use App\Models\Invoice;
 
 class SalesOrder extends Model
 {
@@ -15,5 +16,5 @@ class SalesOrder extends Model
     protected $fillable = ['partner_id','warehouse_id','ordered_at','status','subtotal','tax_total','total'];
     public function partner(){ return $this->belongsTo(BusinessPartner::class, 'partner_id'); }
     public function items(){ return $this->hasMany(SalesItem::class); } 
-    public function invoice(){ return $this->hasOne(Invoice::class); }
+    public function invoice(){ return $this->hasOne(Invoice::class, 'sales_order_id'); }
 }

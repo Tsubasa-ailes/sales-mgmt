@@ -93,7 +93,7 @@ public function store(SalesOrderStoreRequest $request)
         $order = SalesOrder::with(['partner', 'items.product', 'invoice'])
             ->findOrFail($id);
 
-        return view('sales_orders.show', compact('order'));
+            return view('sales_orders.show', compact('order'));
     }
 
     /**
