@@ -29,7 +29,7 @@ class SalesOrderController extends Controller
      */
     public function create()
     {
-        $partners = BusinessPartner::orderBy('name')->get();
+        $partners = BusinessPartner::where('type', 'customer')->orderBy('name')->get();
         $products = Product::where('is_active', true)->orderBy('name')->get();
         $warehouses = Warehouse::orderBy('name')->get();
         return view('sales_orders.create', compact('partners', 'products', 'warehouses'));

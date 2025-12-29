@@ -1,22 +1,26 @@
 {{-- resources/views/sales_orders/show.blade.php --}}
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        <div class="flex items-center justify-between gap-3">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('受注詳細') }}
             </h2>
 
-            @if (!$order->invoice)
-                <a href="{{ route('invoices.create', $order->id) }}"
-                    class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700">
-                    請求書を発行
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="{{ route('sales_orders.index') }}" class="px-4 py-2 text-sm rounded-md border bg-white hover:bg-gray-50">
+                    ← 受注一覧へ戻る
                 </a>
-            @else
-                <a href="{{ route('invoices.show', $order->invoice->id) }}"
-                    class="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700">
-                    請求書を見る
-                </a>
-            @endif
+
+                @if (is_null($order->invoice))
+                    <a href="{{ route('invoices.create', $order->id) }}" class="btn btn-primary">
+                        請求書を発行
+                    </a>
+                @else
+                    <a href="{{ route('invoices.show', $order->invoice->id) }}" class="btn btn-primary">
+                        請求書を見る
+                    </a>
+                @endif
+            </div>
         </div>
     </x-slot>
 

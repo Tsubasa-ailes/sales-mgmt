@@ -13,8 +13,9 @@ class HomeController extends Controller
     {
         // $orderCount = SalesOrder::count();
         $productCount = Product::count();
-        // $totalStock = StockMovement::selectRaw("SUM(CASE WHEN type = 'IN' THEN qty ELSE -qty END) as qty")->value('qty');
+        $orderCount = SalesOrder::count();
+        $totalStock = StockMovement::selectRaw("SUM(CASE WHEN type = 'IN' THEN qty ELSE -qty END) as qty")->value('qty');
         
-        return view('home', compact('productCount'));
+        return view('home', compact('productCount', 'orderCount', 'totalStock'));
     }
 }

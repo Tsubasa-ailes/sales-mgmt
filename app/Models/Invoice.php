@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SalesOrder;
 
 class Invoice extends Model
 {
@@ -27,6 +28,6 @@ class Invoice extends Model
 
     public function order()
     {
-        return $this->belongTo(SalesOrder::class, 'sales_order_id');
+        return $this->belongsTo(SalesOrder::class, 'sales_order_id');
     }
 }

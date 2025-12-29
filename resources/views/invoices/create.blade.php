@@ -5,10 +5,10 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('請求書発行') }}
             </h2>
-            {{-- <a href="{{ route('sales_orders.show', $order->id) }}"
+            <a href="{{ route('sales_orders.show', $order->id) }}"
                 class="bg-gray-600 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700 transition">
                 ← 受注詳細へ戻る
-            </a>--}}
+            </a>
         </div>
     </x-slot>
 
@@ -68,12 +68,12 @@
                         </div>
 
                         <div class="flex justify-end gap-3">
-                            <a href="{{ route('sales_orders.show', $order->id) }}"
+                            {{--<a href="{{ route('sales_orders.show', $order->id) }}"
                                 class="px-4 py-2 text-sm rounded-md border">
                                 キャンセル
-                            </a>
+                            </a>--}}
                             <button type="submit"
-                                class="px-4 py-2 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700">
+                                class="font-semibold text-xl text-gray-800 leading-tight">
                                 請求書発行
                             </button>
                         </div>

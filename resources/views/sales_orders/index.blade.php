@@ -6,7 +6,7 @@
                 {{ __('受注一覧') }}
             </h2>
             <a href="{{ route('sales_orders.create') }}" 
-                class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition">
+                class="btn btn-primary">
                 ＋ 新規受注登録
             </a>
         </div>
@@ -57,7 +57,7 @@
                                         </td>
                                         <td class="px-4 py-2 text-center">
                                             <a href="{{ route('sales_orders.show', $order->id) }}" 
-                                                class="text-blue-600 hover:underline">詳細</a>
+                                                class="btn btn-primary">詳細</a>
                                         </td>
                                     </tr>
                                 @endforeach

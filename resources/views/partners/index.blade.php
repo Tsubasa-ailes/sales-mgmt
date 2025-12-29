@@ -10,6 +10,26 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <h3 class="text-lg font-bold mb-4">登録取引先一覧</h3>
 
+                <form method="GET" action="{{ route('partners.index') }}" class="mb-4">
+                    <div class="flex items-center gap-3">
+                        <select name="type"
+                            class="border-gray-300 rounded-md text-sm">
+                            <option value="">すべて</option>
+                            <option value="customer" {{ $type === 'customer' ? 'selected' : '' }}>
+                                得意先
+                            </option>
+                            <option value="supplier" {{ $type === 'supplier' ? 'selected' : '' }}>
+                                仕入先
+                            </option>
+                        </select>
+
+                        <button type="submit"
+                            class="px-4 py-2 text-sm bg-gray-700 !text-white rounded-md">
+                            絞り込み
+                        </button>
+                    </div>
+                </form>
+
                 @if ($partners->isEmpty())
                     <p>取引先が登録されていません。</p>
                 @else

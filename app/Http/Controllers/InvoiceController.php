@@ -19,7 +19,7 @@ class InvoiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(SalesOrder $order)
     {
         if ($order->invoice) {
             return redirect()

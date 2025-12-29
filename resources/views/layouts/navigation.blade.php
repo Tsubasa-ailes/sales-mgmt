@@ -11,21 +11,16 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @if(!request()->routeIs('home'))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('dashboard')">
-                        {{ __('ホーム') }}
+                        {{ __('トップページへ戻る') }}
                     </x-nav-link>
                 </div>
+                @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                @if (!request()->routeIs('home'))
-                    <button
-                        onclick="history.back()"
-                        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold rounded-md">
-                        戻る
-                    </button>
-                @endif
                 <!-- Settings Dropdown -->
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

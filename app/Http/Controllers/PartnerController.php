@@ -12,8 +12,11 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partners = BusinessPartner::all();
-        return view('partners.index', compact('partners'));
+        $type = request()->query('type');
+        $partners = BusinessPartner::query()->when($type, function ($query, $type) {
+            $query->where('type', $type);
+        })->orderBy('id')->get();
+        return view('partners.index', compact('partners', 'type'));
     }
 
     /**
@@ -21,7 +24,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('partners.create');
     }
 
     /**
@@ -29,7 +32,17 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:100',
+            'billing_postal' => 'required|string|max:20',
+            'billing_address' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
+
+        BusinessPartner::create($validated);
+
+        return redirect()->route('home')->with('status', '取引先を登録しました。');
     }
 
     /**

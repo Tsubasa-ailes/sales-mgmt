@@ -13,7 +13,9 @@ class BusinessPartner extends Model
 
     protected $fillable = [
         'name',
+        'type',
+        'billing_postal',
+        'billing_address',
         'email',
-        'phone',
     ];
 }

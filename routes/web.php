@@ -38,11 +38,23 @@ Route::middleware('auth')->group(function () {
 
     // マスタ系（商品・取引先）
     Route::resource('products', ProductController::class);
-    Route::resource('partners', PartnerController::class);
+    Route::resource('partners', PartnerController::class)
+        ->only(['index', 'create', 'store', 'show']);
 
     // 受注管理（一覧・登録など必要なアクションのみ）
     Route::resource('sales_orders', SalesOrderController::class)
         ->only(['index', 'create', 'store', 'show']);
+
+    // 請求書管理（一覧・詳細のみ）
+    Route::resource('invoices', InvoiceController::class)
+        ->only(['index', 'show']);
+
+    // 請求書発行（受注詳細画面から遷移）
+    Route::get('/sales_orders/{order}/invoices/create', [InvoiceController::class, 'create'])
+        ->name('invoices.create');
+    
+    Route::post('/sales_orders/{order}/invoices', [InvoiceController::class, 'store'])
+        ->name('invoices.store');
 
     Route::resource('invoices', InvoiceController::class)
         ->only(['index', 'create', 'store', 'show']);
